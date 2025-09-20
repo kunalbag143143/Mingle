@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mingle - Mingle Karo, Dhamal Machao</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app">
+        <!-- Navigation Header -->
+        <header class="nav-header">
+            <div class="nav-content">
+                <button class="menu-btn" id="menuBtn">
+                    <span class="menu-icon"></span>
+                </button>
+                <div class="logo">
+                    <h1 class="logo-text">Mingle</h1>
+                    <span class="logo-tagline" data-translate="tagline">Mingle Karo, Dhamal Machao</span>
+                </div>
+                <div class="nav-actions">
+                    <button class="search-btn" id="searchBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="mingle-btn" id="mingleBtn">🤝</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Side Navigation Menu -->
+        <nav class="side-nav hidden" id="sideNav">
+            <div class="side-nav-overlay" id="sideNavOverlay"></div>
+            <div class="side-nav-content">
+                <div class="side-nav-header">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=60&h=60&fit=crop&crop=face" alt="User">
+                        <div class="mingle-score">4.8⭐</div>
+                    </div>
+                    <div class="user-info">
+                        <div class="username">@yourname</div>
+                        <div class="user-stats">
+                            <span>1.2M <span data-translate="followers">Followers</span></span>
+                            <span>892 <span data-translate="mingles">Mingles</span></span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" data-screen="feed" data-translate="home">Home</a></li>
+                    <li><a href="#" data-screen="search" data-translate="discover">Discover</a></li>
+                    <li><a href="#" data-screen="mingle-match" data-translate="mingle_match">Mingle Match</a></li>
+                    <li><a href="#" data-screen="upload" data-translate="upload">Upload</a></li>
+                    <li><a href="#" data-screen="profile" data-translate="profile">Profile</a></li>
+                    <li><a href="#" data-screen="settings" data-translate="settings">Settings</a></li>
+                </ul>
+                <div class="mingle-features">
+                    <div class="feature-item" data-feature="mingle-moments">
+                        <span class="feature-icon">✨</span>
+                        <span data-translate="mingle_moments">Mingle Moments</span>
+                    </div>
+                    <div class="feature-item" data-feature="local-mingle">
+                        <span class="feature-icon">📍</span>
+                        <span data-translate="local_mingle">Local Mingle</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Video Feed Screen -->
+            <div class="screen active" id="feedScreen">
+                <div class="video-feed" id="videoFeed">
+                    <!-- Videos will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Search/Discover Screen -->
+            <div class="screen" id="searchScreen">
+                <div class="search-header">
+                    <div class="search-input-container">
+                        <input type="text" class="search-input" placeholder="Search videos, users, hashtags..." data-translate-placeholder="search_placeholder">
+                        <button class="search-submit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="search-tabs">
+                        <button class="search-tab active" data-tab="trending" data-translate="trending">Trending</button>
+                        <button class="search-tab" data-tab="mingle" data-translate="mingle">Mingle</button>
+                        <button class="search-tab" data-tab="local" data-translate="local">Local</button>
+                        <button class="search-tab" data-tab="challenges" data-translate="challenges">Challenges</button>
+                    </div>
+                </div>
+                <div class="search-content">
+                    <div class="trending-section">
+                        <h3 data-translate="trending_hashtags">Trending Hashtags</h3>
+                        <div class="hashtag-grid" id="hashtagGrid">
+                            <!-- Trending hashtags will be populated here -->
+                        </div>
+                    </div>
+                    <div class="mingle-challenges-section">
+                        <h3 data-translate="mingle_challenges">Mingle Challenges</h3>
+                        <div class="challenges-grid" id="challengesGrid">
+                            <!-- Mingle challenges will be populated here -->
+                        </div>
+                    </div>
+                    <div class="categories-section">
+                        <h3 data-translate="categories">Categories</h3>
+                        <div class="category-grid" id="categoryGrid">
+                            <!-- Categories will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mingle Match Screen -->
+            <div class="screen" id="mingle-matchScreen">
+                <div class="mingle-match-container">
+                    <h2 data-translate="mingle_match">Mingle Match</h2>
+                    <p data-translate="match_description">Find people with similar interests and start mingling!</p>
+                    <div class="match-cards" id="matchCards">
+                        <!-- Match cards will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Screen -->
+            <div class="screen" id="uploadScreen">
+                <div class="upload-container">
+                    <h2 data-translate="create_video">Create New Video</h2>
+                    <div class="upload-modes">
+                        <button class="mode-btn active" data-mode="regular">
+                            <span class="mode-icon">🎥</span>
+                            <span data-translate="regular_mode">Regular</span>
+                        </button>
+                        <button class="mode-btn" data-mode="mingle">
+                            <span class="mode-icon">🤝</span>
+                            <span data-translate="mingle_mode">Mingle Mode</span>
+                        </button>
+                        <button class="mode-btn" data-mode="collaborate">
+                            <span class="mode-icon">👫</span>
+                            <span data-translate="collaborate_mode">Collaborate</span>
+                        </button>
+                    </div>
+                    <div class="upload-area">
+                        <div class="upload-zone" id="uploadZone">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7,10 12,15 17,10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <p data-translate="upload_instruction">Tap to upload video or drag & drop</p>
+                        </div>
+                        <input type="file" id="videoInput" accept="video/*" style="display: none;">
+                    </div>
+                    <div class="upload-form">
+                        <div class="form-group">
+                            <label data-translate="caption">Caption</label>
+                            <textarea class="form-control" placeholder="Write a caption..." data-translate-placeholder="caption_placeholder"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="hashtags">Hashtags</label>
+                            <input type="text" class="form-control" placeholder="#MingleMoves #fun #viral" data-translate-placeholder="hashtags_placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="music">Add Music</label>
+                            <select class="form-control">
+                                <option data-translate="no_music">No Music</option>
+                                <option>Bollywood Hits 🎵</option>
+                                <option>Sambalpuri Folk 🥁</option>
+                                <option>Trending Sounds 🎶</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="privacy">Privacy</label>
+                            <select class="form-control">
+                                <option data-translate="public">Public</option>
+                                <option data-translate="friends">Friends Only</option>
+                                <option data-translate="private">Private</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="setting-item">
+                                <span data-translate="allow_mingles">Allow Mingles</span>
+                                <input type="checkbox" class="setting-toggle" checked>
+                            </label>
+                        </div>
+                        <button class="btn btn--primary btn--full-width mingle-btn-primary" data-translate="post_video">Post Video</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Screen -->
+            <div class="screen" id="profileScreen">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=face" alt="Profile">
+                        </div>
+                        <div class="profile-info">
+                            <h2 class="profile-name">Your Name</h2>
+                            <p class="profile-username">@yourname</p>
+                            <p class="profile-bio">Content Creator | Ready to Mingle | 🇮🇳</p>
+                            <div class="profile-badges">
+                                <span class="badge mingle-badge">Mingle Master</span>
+                                <span class="badge cultural-badge">Cultural Ambassador</span>
+                            </div>
+                        </div>
+                        <button class="btn btn--outline edit-profile-btn" data-translate="edit_profile">Edit Profile</button>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-number">156</div>
+                            <div class="stat-label" data-translate="videos">Videos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">1.2M</div>
+                            <div class="stat-label" data-translate="followers">Followers</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">234</div>
+                            <div class="stat-label" data-translate="following">Following</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">892</div>
+                            <div class="stat-label" data-translate="mingles">Mingles</div>
+                        </div>
+                    </div>
+                    <div class="profile-tabs">
+                        <button class="profile-tab active" data-tab="videos">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </button>
+                        <button class="profile-tab" data-tab="mingles">🤝</button>
+                        <button class="profile-tab" data-tab="liked">❤️</button>
+                    </div>
+                    <div class="profile-videos">
+                        <div class="video-grid" id="profileVideoGrid">
+                            <!-- Profile videos will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Screen -->
+            <div class="screen" id="settingsScreen">
+                <div class="settings-container">
+                    <h2 data-translate="settings">Settings</h2>
+                    <div class="settings-section">
+                        <h3 data-translate="language">Language & Region</h3>
+                        <div class="form-group">
+                            <label data-translate="select_language">Select Language</label>
+                            <select class="form-control" id="languageSelect">
+                                <option value="english">English</option>
+                                <option value="hindi">हिंदी (Hindi)</option>
+                                <option value="sambalpuri">ସମ୍ବଲପୁରୀ (Sambalpuri)</option>
+                                <option value="tamil">தமிழ் (Tamil)</option>
+                                <option value="bengali">বাংলা (Bengali)</option>
+                                <option value="telugu">తెలుగు (Telugu)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3 data-translate="mingle_settings">Mingle Settings</h3>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="auto_mingle">Auto Mingle Suggestions</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="location_mingle">Location-based Mingle</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="interest_match">Interest Matching</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3 data-translate="privacy">Privacy & Safety</h3>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="private_account">Private Account</label>
+                            <input type="checkbox" class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="allow_comments">Allow Comments</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3 data-translate="notifications">Notifications</h3>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="push_notifications">Push Notifications</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label" data-translate="mingle_notifications">Mingle Requests</label>
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="feed">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span data-translate="home">Home</span>
+            </button>
+            <button class="nav-item" data-screen="search">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <span data-translate="discover">Discover</span>
+            </button>
+            <button class="nav-item upload-btn" data-screen="upload">
+                <div class="upload-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
+            </button>
+            <button class="nav-item" data-screen="mingle-match">
+                🤝
+                <span data-translate="mingle">Mingle</span>
+            </button>
+            <button class="nav-item" data-screen="profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span data-translate="profile">Profile</span>
+            </button>
+        </nav>
+
+        <!-- Comment Modal -->
+        <div class="modal hidden" id="commentModal">
+            <div class="modal-overlay" id="commentModalOverlay"></div>
+            <div class="modal-content comment-modal-content">
+                <div class="modal-header">
+                    <h3 data-translate="comments">Comments</h3>
+                    <button class="modal-close" id="closeCommentModal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="comment-list" id="commentList">
+                    <!-- Comments will be populated here -->
+                </div>
+                <div class="comment-input-container">
+                    <input type="text" class="comment-input" placeholder="Add a comment..." data-translate-placeholder="add_comment">
+                    <button class="comment-submit" data-translate="post">Post</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Modal -->
+        <div class="modal hidden" id="shareModal">
+            <div class="modal-overlay" id="shareModalOverlay"></div>
+            <div class="modal-content share-modal-content">
+                <div class="modal-header">
+                    <h3 data-translate="share">Share</h3>
+                    <button class="modal-close" id="closeShareModal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="share-options">
+                    <button class="share-option">
+                        <div class="share-icon whatsapp">📱</div>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button class="share-option">
+                        <div class="share-icon facebook">📘</div>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="share-option">
+                        <div class="share-icon twitter">🐦</div>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="share-option">
+                        <div class="share-icon instagram">📸</div>
+                        <span>Instagram</span>
+                    </button>
+                    <button class="share-option" id="copyLinkBtn">
+                        <div class="share-icon copy">🔗</div>
+                        <span data-translate="copy_link">Copy Link</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mingle Request Modal -->
+        <div class="modal hidden" id="mingleRequestModal">
+            <div class="modal-overlay" id="mingleRequestOverlay"></div>
+            <div class="modal-content mingle-modal-content">
+                <div class="modal-header">
+                    <h3 data-translate="mingle_request">Mingle Request</h3>
+                    <button class="modal-close" id="closeMingleModal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mingle-content">
+                    <p data-translate="mingle_message">Send a Mingle request to connect and collaborate!</p>
+                    <textarea class="form-control" placeholder="Add a personal message..." data-translate-placeholder="mingle_message_placeholder"></textarea>
+                    <div class="mingle-actions">
+                        <button class="btn btn--outline" id="cancelMingle" data-translate="cancel">Cancel</button>
+                        <button class="btn mingle-btn-primary" id="sendMingle" data-translate="send_mingle">Send Mingle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
