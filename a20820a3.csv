@@ -1,0 +1,8 @@
+Layer_Number,Layer_Name,Description,Security_Features
+1,Network Security,Firewall + IP Whitelisting,"DDoS Protection, Firewall Rules, IP Filtering"
+2,Authentication,SCRAM-SHA-256 + Rate Limiting,"Strong Password Hashing, Login Attempts Limiting"
+3,Authorization,Role-Based Access Control,"User Permissions, Admin Controls, Resource Access"
+4,Encryption,TLS/SSL + Data-at-Rest,"HTTPS Communication, Database Encryption"
+5,Database Security,Field-level Encryption,"Sensitive Data Protection, Query Security"
+6,AI Monitoring,MingleGuard AI Agent,"Threat Detection, Auto-healing, Anomaly Detection"
+7,Audit Logging,Real-time Monitoring,"Security Events, Access Logs, Performance Tracking"
